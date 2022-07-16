@@ -1,0 +1,17 @@
+<div class="pokemon">
+
+  <ul class="pokemon__list">
+    <ng-container *ngFor="let pokemon of pokemons">
+      <li *ngIf="pokemon.loaded" class="pokemon__card">
+        <img [src]="'/assets/images/poke/' + pokemon.id_full + '.png'" [alt]="pokemon.name" width="60"
+          class="pokemon__thumb" />
+        <strong><sup>#</sup>{{pokemon.id_full}}</strong>
+        <h2 class="pokemon__name">{{pokemon.name}}</h2>
+        <span *ngFor="let stat of pokemon.stats">{{stat.stat.name}} : <strong>{{stat.base_stat}}</strong> |
+        </span><br />
+        <span *ngFor="let type of pokemon.types">{{type.type.name}} </span>
+      </li>
+    </ng-container>
+  </ul>
+
+</div>

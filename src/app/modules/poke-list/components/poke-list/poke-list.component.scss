@@ -1,0 +1,29 @@
+.pokemon {
+  &__list {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    column-gap: 20px;
+  }
+
+  &__card {
+    list-style: none;
+    padding: 10px;
+    border: 1px solid #eee;
+  }
+
+  &__thumb {
+    width: 120px;
+  }
+
+  &__name {
+    text-transform: capitalize;
+    margin-top: 5px;
+  }
+
+  .bgimg {
+    filter: blur(2px);
+    opacity: 0.6;
+  }
+}
