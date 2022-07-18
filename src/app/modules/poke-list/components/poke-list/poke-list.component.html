@@ -1,0 +1,60 @@
+<div class="pokemon">
+  <div class="pokemon__filter">
+    <mat-form-field class="example-form-field" style="margin-right: 20px">
+      <mat-label>Search Cards</mat-label>
+      <input matInput type="text" [(ngModel)]="pokeSearchQuery">
+      <button *ngIf="pokeSearchQuery" matSuffix mat-icon-button aria-label="Clear" (click)="pokeSearchQuery=''" class="mat-clear-btn">
+        ×
+      </button>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Type</mat-label>
+      <mat-select [(value)]="pokeTypesSelected" multiple>
+        <mat-select-trigger>
+          {{pokeTypesSelected[0] || ''}}
+          <span *ngIf="(pokeTypesSelected.length || 0) > 1" class="example-additional-selection">
+            (+{{(pokeTypesSelected.length || 0) - 1}}
+            {{pokeTypesSelected.length === 2 ? 'other' : 'others'}})
+          </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let type of pokeTypeList" [value]="type.name">{{type.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="pokemon__record-count">
+      Showing <strong>{{(pokemons | pokeSearch: pokeSearchQuery | pokeTypes : pokeTypesSelected).length}}</strong> cards
+    </div>
+  </div>
+
+  <ul class="pokemon__list">
+    <ng-container *ngFor="let pokemon of pokemons | pokeSearch: pokeSearchQuery | pokeTypes : pokeTypesSelected">
+      <li *ngIf="pokemon.loaded" class="pokemon__card">
+
+        <strong class="pokemon__card-index"><sup>#</sup>{{pokemon.id_full}}</strong>
+
+        <div class="pokemon__thumb">
+          <img [src]="'/assets/images/poke/' + pokemon.id_full + '.png'" [alt]="pokemon.name" width="130"
+            height="130" />
+        </div>
+
+        <h2 class="pokemon__name">{{pokemon.name}}</h2>
+
+        <div class="pokemon__stat-block">
+          <div class="pokemon__stat-block__item" *ngFor="let stat of pokemon.stats">
+            <strong>{{stat.base_stat}}</strong>
+            <div class="pokemon__stat-block__label">{{stat.stat.name}}</div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+
+        <div class="pokemon__type-block">
+          <span *ngFor="let type of pokemon.types" [ngClass]="'type--'+type.type.name">{{type.type.name}} </span>
+        </div>
+
+      </li>
+    </ng-container>
+  </ul>
+
+  <div class="pokemon__no-records" *ngIf="(pokemons | pokeSearch: pokeSearchQuery | pokeTypes : pokeTypesSelected).length == 0">No cards available</div>
+</div>
