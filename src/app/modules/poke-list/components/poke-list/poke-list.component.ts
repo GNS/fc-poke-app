@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PokemonListResponse } from '../../poke-list.models';
+
+import { PokeApiListItem, PokemonCard } from '../../poke-list.models';
 import { PokeListService } from '../../poke-list.service';
 
 @Component({
@@ -8,31 +9,44 @@ import { PokeListService } from '../../poke-list.service';
   styleUrls: ['./poke-list.component.scss']
 })
 export class PokeListComponent implements OnInit {
-  pokemons: any = [];
+  pokemons: PokemonCard[] = [];
+
+  pokeSearchQuery: string = "";
+  pokeTypesSelected = [];
+  pokeTypeList: PokeApiListItem[] = [];
 
   constructor(
     private pokeSvc: PokeListService
   ) { }
 
   ngOnInit(): void {
-    this.loadPokemons()
+    this.loadPokemons();
+    this.loadPokemonTypes();
   }
 
   private loadPokemons() {
-    this.pokeSvc.getList().subscribe((res: PokemonListResponse) => {
+    this.pokeSvc.getList().subscribe((res) => {
       if (res && res.results && Array.isArray(res.results)) {
         res.results.forEach(itm => {
           itm.loaded = false;
-          this.pokemons.push(itm);
+          const pokeCard: PokemonCard = Object.assign(itm);
+          this.pokemons.push(pokeCard);
           this.getPokemonDetails(itm.url);
         });
       }
     })
   }
 
+  private loadPokemonTypes() {
+    this.pokeSvc.getPokemonTypes().subscribe((res) => {
+      if (res && res.results && Array.isArray(res.results)) {
+        this.pokeTypeList = res.results;
+      }
+    })
+  }
+
   private getPokemonDetails(pokeUrl: string) {
     this.pokeSvc.getPokemon(pokeUrl).subscribe((res: any) => {
-      console.log(res);
       res.loaded = true;
       const pokeItm = this.pokemons.findIndex((p: any) => p.name == res.name);
       if (res.name.endsWith("-m")) res.name = res.name.slice(0, -2) + ' ♂️';

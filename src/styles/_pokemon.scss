@@ -1,0 +1,129 @@
+$app-primary : #c2185b;
+$app-bg : #424242;
+
+.pokemon {
+  width: 80%;
+  margin: 0 auto;
+  background: rgba(194, 24, 91, 0.8);
+  border-radius: 10px;
+  border: 3px solid $app-primary;
+  max-height: 80vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 10px $app-bg;
+
+  &__filter {
+    background: $app-bg;
+    padding: 5px 15px;
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    column-gap: 20px;
+    flex: 1;
+    overflow: auto;
+    padding: 15px;
+  }
+
+  &__card {
+    list-style: none;
+    padding: 10px;
+    border: 1px solid $app-bg;
+    background: rgba(255, 255, 255, 0.8);
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 2px solid $app-bg;
+    position: relative;
+    user-select: none;
+
+    &-index {
+      position: absolute;
+      top: 5px;
+      background: $app-bg;
+      color: #fff;
+      padding: 5px;
+      border-radius: 7px;
+      right: 5px;
+      font-size: 14px;
+    }
+  }
+
+  &__thumb {
+    width: 100px;
+    background: $app-primary;
+    height: 100px;
+    border-radius: 70px;
+    border: 2px solid $app-bg;
+    margin: 20px auto;
+
+    img {
+      width: 130px;
+      margin: -20px;
+    }
+  }
+
+  &__name {
+    text-transform: capitalize;
+    margin-top: -10px;
+    text-align: center;
+  }
+
+  &__stat-block {
+    background: rgb(185 128 150 / 30%);
+    padding: 15px;
+    margin: -10px;
+
+    &__item {
+      float: left;
+      width: 33.33%;
+      text-align: center;
+      color: $app-primary;
+
+      &:nth-of-type(1n+4) {
+        display: none;
+      }
+    }
+
+    &__label {
+      font-size: 12px;
+      text-transform: uppercase;
+      margin-bottom: 9px;
+    }
+  }
+
+  &__type-block {
+    text-align: center;
+
+    span {
+      margin-right: 10px;
+      padding: 2px 5px;
+      color: #fff;
+      border-radius: 4px;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 1px;
+      display: inline-block;
+    }
+  }
+
+  &__record-count {
+    float: right;
+    color: #fff;
+    padding-top: 30px;
+  }
+
+  &__no-records {
+    text-align: center;
+    margin: 15vh auto;
+    border: 1px dashed #fff;
+    color: #fff;
+    border-radius: 4px;
+    padding: 20px;
+    width: 240px;
+  }
+}

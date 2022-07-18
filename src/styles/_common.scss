@@ -1,0 +1,131 @@
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  background: url("/assets/images/bg.svg") no-repeat top right fixed;
+  background-size: cover;
+}
+
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  main {
+    flex: 1
+  }
+}
+
+header {
+  .logo {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+footer {
+  .fc-logo {
+    text-align: center;
+    margin: 10px auto;
+  }
+}
+
+.clearfix {
+  clear: both;
+}
+
+.type {
+  &--normal {
+    background: #A8A77A
+  }
+
+  &--fire {
+    background: #EE8130
+  }
+
+  &--water {
+    background: #6390F0
+  }
+
+  &--electric {
+    background: #F7D02C
+  }
+
+  &--grass {
+    background: #7AC74C
+  }
+
+  &--ice {
+    background: #96D9D6
+  }
+
+  &--fighting {
+    background: #C22E28
+  }
+
+  &--poison {
+    background: #A33EA1
+  }
+
+  &--ground {
+    background: #E2BF65
+  }
+
+  &--flying {
+    background: #A98FF3
+  }
+
+  &--psychic {
+    background: #F95587
+  }
+
+  &--bug {
+    background: #A6B91A
+  }
+
+  &--rock {
+    background: #B6A136
+  }
+
+  &--ghost {
+    background: #735797
+  }
+
+  &--dragon {
+    background: #6F35FC
+  }
+
+  &--dark {
+    background: #705746
+  }
+
+  &--steel {
+    background: #B7B7CE
+  }
+
+  &--fairy {
+    background: #D685AD
+  }
+}
+
+
+// MATERIAL
+
+.mat-input-element {
+  color: #fff !important;
+}
+
+.mat-select-value {
+  text-transform: capitalize;
+}
+
+.mat-select-panel-wrap {
+  text-transform: capitalize;
+}
+
+.mat-clear-btn {
+  background: #424242;
+  border: none;
+  color: #fff;
+  border: 1px solid;
+  border-radius: 20px;
+  cursor: pointer;
+}
